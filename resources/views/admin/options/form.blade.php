@@ -1,7 +1,7 @@
-@extends('admin.adminLayout')
+@extends('layout')
 
 @section('pageTitle', $option->exists ? 'Éditer Cette option' : 'Ajouter Une Option')
-@section('h1', $option->exists ? 'Éditer Cette Option' : 'Ajouter Une Nouvelle Option')
+@section('title', $option->exists ? 'Éditer Cette Option' : 'Ajouter Une Nouvelle Option')
 
 @section('content')
 

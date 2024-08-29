@@ -1,29 +1,10 @@
-@extends('admin.adminLayout')
+@extends('layout')
 
 @section('pageTitle', 'Les Options')
 
-@section('h1', 'Toutes Les Options')
+@section('title', 'Toutes Les Options')
 
 @section('content')
-<style>
-.thCustoms {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #6b7280;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-left: 3em !important;
-}
-.tdCustoms {
-    max-width: 250px;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.75rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-</style>
 
     <div class='m-12'>
         <div class="flex">
@@ -35,15 +16,15 @@
         <table class="mx-auto bg-grey border">
             <thead class="bg-gray-100">
                 <tr class="ml-12">
-                    <th class="thCustoms">Nom de l'option</th>
-                    <th class="thCustoms text-right">Actions</th>
+                    <th class="gb_thCustoms">Nom de l'option</th>
+                    <th class="gb_thCustoms text-right">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($options as $option)
                     <tr class="{{ $option->sold ? 'bg-red-100' : '' }}">
-                        <td class="tdCustoms">{{ $option->name }}</td>
-                        <td class="tdCustoms flex justify-end">
+                        <td class="gb_tdCustoms">{{ $option->name }}</td>
+                        <td class="gb_tdCustoms flex justify-end">
                             <a href="{{ route('admin.option.edit', $option->id) }}" class="text-orange-500 mr-2 text-lg">✏️</a>
                             <form action="{{ route('admin.option.destroy', $option->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette option ?');">
                                 @csrf
@@ -55,6 +36,5 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $options->links() }}
     </div>
 @endsection

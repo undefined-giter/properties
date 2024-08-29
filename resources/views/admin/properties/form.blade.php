@@ -1,7 +1,7 @@
-@extends('admin.adminLayout')
+@extends('layout')
 
 @section('pageTitle', $property->exists ? 'Éditer Ce Bien' : 'Ajouter Un Bien')
-@section('h1', $property->exists ? 'Éditer Ce Bien' : 'Ajouter Un Nouveau Bien')
+@section('title', $property->exists ? 'Éditer Ce Bien' : 'Ajouter Un Nouveau Bien')
 
 @section('content')
 

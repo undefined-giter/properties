@@ -76,7 +76,7 @@ class PropertyController extends Controller
         $options = Option::orderBy('name')->get();
 
         if (!$property) {
-            return redirect()->route('admin.property.index')->with('error', 'Property not found.');
+            return redirect()->route('admin.property.index')->with('error', 'Le bien n\'a pas été trouvé');
         }
 
         return view('admin.properties.form', [
@@ -93,7 +93,7 @@ class PropertyController extends Controller
         $property = Property::find($id);
 
         if (!$property) {
-            return redirect()->route('admin.property.index')->with('error', 'Propriétée non trouvée.');
+            return redirect()->route('admin.property.index')->with('error', 'Le bien n\'a pas été trouvé');
         }
 
         $property->update($request->validated());
@@ -110,7 +110,7 @@ class PropertyController extends Controller
         $property = Property::find($id);
 
         if (!$property) {
-            return redirect()->route('admin.property.index')->with('error', 'Propriétée non trouvée.');
+            return redirect()->route('admin.property.index')->with('error', 'Le bien n\'a pas été trouvé');
         }
 
         $property->delete();
