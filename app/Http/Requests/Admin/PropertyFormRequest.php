@@ -13,7 +13,7 @@ class PropertyFormRequest extends FormRequest
     {
         return true;
     }
-
+    
     /**
      * Get the validation rules that apply to the request.
      *
@@ -33,6 +33,7 @@ class PropertyFormRequest extends FormRequest
             'address' => ['required', 'min:8', 'max:255'],
             'postal_code' => ['required', 'min:5'],
             'sold' => ['boolean'],
+            'options' => ['array', 'exists:options,id'],
         ];
     }
 }

@@ -27,7 +27,9 @@
 
     <div class='m-12'>
         <div class="flex">
-            <button class='btn btn-primary mr-12 ml-auto -mt-6'><a href="{{ route('admin.property.create') }}">Ajouter un bien</a></button>
+            <button class='btn btn-primary mr-12 ml-auto -mt-6' onclick="window.location='{{ route('admin.property.create') }}'">
+                Ajouter un bien
+            </button>        
         </div>
         <table class="mx-auto bg-grey border">
             <thead class="bg-gray-100">

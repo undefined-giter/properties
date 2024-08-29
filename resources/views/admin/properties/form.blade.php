@@ -31,6 +31,25 @@
             @include('shared.input', ['class' => 'col', 'label' => 'Chambres', 'name' => 'bedrooms', 'value' => $property->bedrooms])
             @include('shared.input', ['class' => 'col', 'label' => 'Étage', 'name' => 'floor', 'value' => $property->floor])
         </div>
+        <div class="row">
+            @foreach ($options as $option)
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            name="options[]" 
+                            value="{{ $option->id }}" 
+                            id="option-{{ $option->id }}"
+                            {{ $property->options->contains($option) ? 'checked' : '' }}
+                        >
+                        <label class="form-check-label" for="option-{{ $option->id }}">
+                            {{ $option->name }}
+                        </label>
+                    </div>
+                </div>
+            @endforeach
+        </div>
         <div class="text-right">
             @include('shared.checkbox', ['class' => 'mt-3', 'label' => 'Cochez la case si la propriété a été vendue :', 'name' => 'sold', 'value' => $property->exists ? $property->sold : false])
         </div>
