@@ -8,6 +8,13 @@
 
     <div class='m-12'>
         <div class="max-w-3xl mx-auto">
+            <form method="get" class="container flex m-2">
+                <input placeholder="Mot clef" class="form-control m-1" name='title' value="{{ $input['title'] ?? '' }}">
+                <input type="number" placeholder="Budget maximum" class="form-control m-1" name='price' value="{{ $input['price'] ?? '' }}">
+                <input type="number" placeholder="Surface minimale" class="form-control m-1" name='surface' value="{{ $input['surface'] ?? '' }}">
+                <button class="btn btn-primary btn-sm flex-grow-0 m-1">Rechercher</button>
+            </form>
+
             <table class="w-full bg-grey border">
                 <thead class="bg-gray-100">
                     <tr>
@@ -19,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($properties as $property)
+                    @forelse($properties as $property)
                         <tr class="{{ $property->sold ? 'bg-red-100' : '' }}">
                             <td class="gb_tdCustoms" colspan="2">{{ $property->title }}</td> <!-- Contenu du titre prend aussi deux colonnes -->
                             <td class="gb_tdCustoms">{{ $property->surface }} m²</td>
@@ -32,12 +39,11 @@
                                 </button>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>Pas de propriétés répondant aux critères pour le moment</tr>
+                    @endforelse
                 </tbody>
             </table>
-            <div class="mt-4">
-                {{ $properties->links() }}
-            </div>
         </div>
     </div>
 

@@ -6,6 +6,7 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\SearchPropertyRequest;
 
 class HomeController extends Controller
 {
@@ -21,12 +22,25 @@ class HomeController extends Controller
         ]);
     }
 
-    public function list()
+    public function list(SearchPropertyRequest $request)
     {
-        $properties = Property::paginate(15);
+        $query = Property::query();
+
+        if($request->validated('title')){ 
+            $query = $query->where('title', 'like', "%{$request->validated('title')}%");
+        }
+        if($request->validated('price')){ 
+            $query = $query->where('price', '<=', $request->validated('price'));
+        }
+        if($request->validated('surface')){ 
+            $query = $query->where('surface', '>=', $request->validated('surface'));
+        }
+
+        $properties = $query->paginate(15);
 
         return view('list', [
-            'properties' => $properties
+            'properties' => $properties,
+            'input' => $request->validated()
         ]);
     }
 
